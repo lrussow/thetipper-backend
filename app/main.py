@@ -5,7 +5,7 @@ import stripe
 from fastapi import FastAPI, HTTPException, Request, Header
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from pydanticsettings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     allowedorigins: str = Field("http://localhost:3000", alias="ALLOWEDORIGINS")
     apiauthtoken: Optional[str] = Field(None, alias="APIAUTHTOKEN")
 
-    modelconfig = SettingsConfigDict(envfile=".env", extra="ignore")
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
 settings = Settings()
@@ -27,7 +27,7 @@ app = FastAPI(title="Stripe Terminal Backend (FastAPI)")
 
 # Optional CORS (helpful if you have web tooling; Android usually doesn't need this)
 origins = [o.strip() for o in settings.allowedorigins.split(",") if o.strip()]
-app.addmiddleware(
+app.add_middleware(
     CORSMiddleware,
     alloworigins=origins,
     allowcredentials=False,
