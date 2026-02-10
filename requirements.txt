@@ -1,6 +1,11 @@
-fastapi==0.110.0
-uvicorn[standard]==0.27.1
-stripe==8.11.0
-pydantic==2.6.1
-pydantic-settings==2.2.1
-python-dotenv==1.0.1
+fastapi>=0.110
+uvicorn>=0.29
+stripe>=10.0
+pydantic>=2.6
+pydantic-settings>=2.2
+
+python-jose>=3.3
+cryptography>=42.0
+requests>=2.31
+cachetools>=7.0.0
+httpx>=0.28.1
